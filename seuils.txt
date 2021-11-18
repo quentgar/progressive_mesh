@@ -1,0 +1,8 @@
+Site visualisation Wireframe : https://www.emb3d.com/3dviewer
+
+suzanne_edge (1472 arrêtes) :
+1 -> 1e-3 / 1039 arrêtes
+2 -> 2e-3 / 751 arrêtes
+3 -> 3e-3 / 560 arrêtes
+4 -> 4e-3 / 454 arrêtes
+5 -> 5e-3 / 359 arrêtes
