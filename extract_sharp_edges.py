@@ -21,29 +21,6 @@ class Decimater(obja.Model):
         vertex = []
         faces = []
 
-        level = 10
-
-        epsilon_list = np.linspace(0.5, 2.5, level)
-
-        for i in range(level):
-            base_list = self.get_base_edges(epsilon_list[i])  # Calcul des base edges
-            while len(base_list) > 0:
-                for j, e in enumerate(self.edges):
-                    if (j not in sharp_list) and (j not in base_list):
-                        """
-                        EDGE COLLAPSE
-                        """
-
-                        """
-                        SUPPRESSION DU EDGE
-                        ET MAJ DES EDGES 
-                        DANS LE MODELE
-                        """
-
-                        """
-                        ECRITURE DE L'INFO DANS L'OBJA
-                        """
-
         for edge_index in sharp_list:
             edge = self.edges[edge_index]
             if not edge[0] in v_index:
