@@ -336,6 +336,50 @@ class Model:
 
         return base_list
 
+    def get_edge_weight(self, edge_index):
+
+        e = self.edges[edge_index]
+
+        f1, f2 = e[2], e[3]  # Test différence des attributs scalaires des wedges adjacentes
+        face1 = self.faces[f1]
+        face2 = self.faces[f2]
+
+        if face1.a == e[0]:  # n11 normale associée à la face 1 et e[0]=v1
+            n11 = face1.an
+        elif face1.b == e[0]:
+            n11 = face1.bn
+        else:
+            n11 = face1.cn
+
+        if face1.a == e[1]:  # n12 normale associée à la face 1 et e[1]=v2
+            n12 = face1.an
+        elif face1.b == e[1]:
+            n12 = face1.bn
+        else:
+            n12 = face1.cn
+
+        if face2.a == e[0]:  # n21 normale associée à la face 2 et e[0]=v1
+            n21 = face2.an
+        elif face2.b == e[0]:
+            n21 = face2.bn
+        else:
+            n21 = face2.cn
+
+        if face2.a == e[1]:  # n22 normale associée à la face 2 et e[1]=v2
+            n22 = face2.an
+        elif face2.b == e[1]:
+            n22 = face2.bn
+        else:
+            n22 = face2.cn
+
+        n1 = np.concatenate((self.normals[n11], self.normals[n12]))
+        n2 = np.concatenate((self.normals[n21], self.normals[n22]))
+
+        poids = np.sum(abs(self.normals[n11] - self.normals[n12]))
+
+        return poids
+
+
     def get_vector_from_string(self, string):
         """
         Gets a vector from a string representing the index of the vector, starting at 1.

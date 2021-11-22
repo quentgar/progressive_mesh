@@ -22,13 +22,39 @@ class Decimater(obja.Model):
         epsilon_list = np.linspace(0.5, 2.5, level)
 
         for i in range(level):
+
             base_list = self.get_base_edges(epsilon_list[i])  # Calcul des base edges
+
             while len(base_list) > 0:
+
+                keep_edges = sharp_list + base_list
+                removable_vertices = [True for i in range(len(self.vertices))]  # Liste booléenne vertices à supp
+                for index_e in keep_edges:
+                    e = self.edges[index_e]
+                    removable_vertices[e[0]] = False
+                    removable_vertices[e[1]] = False
+
+                for k in range(len(removable_vertices)):
+                    if removable_vertices[k]:  # Si le sommet est supprimable
+                        """ Récupérer les edges liés à ce sommet """
+                        list_edges = []
+                        liste_poids = []
+                        for q in range(len(self.edges)):
+                            e = self.edges[q]
+                            if (e[0] == k) or (e[1] == k):
+                                list_edges.append(q)
+                                liste_poids.append(self.get_edge_weight(q)) # Calcul du poids
+
+                        """ Ordre de priorité """
+
+
                 for j, e in enumerate(self.edges):
                     if (j not in sharp_list) and (j not in base_list):
                         """
                         EDGE COLLAPSE
                         """
+
+
 
                         """
                         SUPPRESSION DU EDGE
